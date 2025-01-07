@@ -1,35 +1,28 @@
-
-
-
-import {useState} from "react";
-
-
+import { useState,useEffect } from 'react'
+import BlogList from './BlogList';
 const Home = () => {
-    
-    const [blogs, setBlogs]=useState(
-        [
-            {'title':'Salaar','body': 'action movie', 'author':'Prashanth'},
-            {'title':'Kalki','body': 'Scifi movie', 'author':'Nag Ashwin'},
-            {'title':'Vikram','body': 'action movie', 'author':'lokesh'}
-        ]
+    const [name,setName]=useState("varshi");
+    const [blogs,setBlogs]=useState([
+    {title:"My Blog1", body:"Body of Blog1", author:"Ramu",id:1},
+    {title:"My Blog2", body:"Body of Blog2", author:"Raju",id:2},
+    {title:"My Blog3", body:"Body of Blog3", author:"Sindhu",id:3},
+    ]);
+    const handleDelete = (author)=>{
+        const newblogs = blogs.filter(blog=>blog.author!==author)
+        setBlogs(newblogs)
+    };
+    useEffect(() => {
+        console.log("use effect ran");
+        console.log(blogs)
+        console.log(name)
+    },[name]);
+    return (
+    <div className="Home">
+            <button onClick={()=>setName("Yashu")}>Click Me</button>
 
-    )
+        <BlogList blogs = {blogs} title = "Hello varshi" handleDelete={handleDelete}/>
 
-    return ( 
-
-        <div className="home">
-            { 
-                blogs.map((blog) => (
-                    <div className="blog-preview">
-                        <h2>{blog.title}</h2>
-                        <p> Written by: {blog.author}</p>
-                    </div>
-                    
-                ))
-            }
-        </div>
-
-     );
-}
-
-export default Home;
+    </div>
+    );
+   }
+   export default Home;
