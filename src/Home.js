@@ -15,7 +15,7 @@ const Home = () => {
         console.log("use effect ran");
         console.log(blogs)
         console.log(name)
-    },[name]);
+    });
     return (
     <div className="Home">
             <button onClick={()=>setName("Yashu")}>Click Me</button>
